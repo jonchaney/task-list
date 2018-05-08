@@ -8,13 +8,15 @@
 
 Task.destroy_all
 Group.destroy_all
+Dependency.destroy_all
 
+# create groups
 purchases = Group.create(name: 'Purchases')
 build = Group.create(name: 'Build A Plane')
 
-
+# create tasks
 task_one = Task.create(name: "Go to the bank", group_id: purchases.id)
-task_one = Task.create(name: "Buy snack", group_id: purchases.id)
+task_nine = Task.create(name: "Buy snack", group_id: purchases.id)
 task_two = Task.create(name: "Buy hammer", group_id: purchases.id)
 task_three = Task.create(name: "Buy wood", group_id: purchases.id)
 task_four = Task.create(name: "Buy nails", group_id: purchases.id)
@@ -22,6 +24,22 @@ task_five = Task.create(name: "Buy paint", group_id: purchases.id)
 task_six = Task.create(name: "Hammer nails into wood", group_id: build.id)
 task_seven = Task.create(name: "Paint wings", group_id: build.id)
 task_eight = Task.create(name: "Have a snack", group_id: build.id)
+
+# create dependencies
+Dependency.create(task_id: task_nine.id, dependency_id: task_one.id)
+Dependency.create(task_id: task_nine.id, dependency_id: task_one.id)
+Dependency.create(task_id: task_two.id, dependency_id: task_one.id)
+Dependency.create(task_id: task_three.id, dependency_id: task_one.id)
+Dependency.create(task_id: task_four.id, dependency_id: task_one.id)
+Dependency.create(task_id: task_five.id, dependency_id: task_one.id)
+Dependency.create(task_id: task_six.id, dependency_id: task_two.id)
+Dependency.create(task_id: task_six.id, dependency_id: task_three.id)
+Dependency.create(task_id: task_six.id, dependency_id: task_four.id)
+Dependency.create(task_id: task_six.id, dependency_id: task_four.id)
+Dependency.create(task_id: task_seven.id, dependency_id: task_five.id)
+Dependency.create(task_id: task_seven.id, dependency_id: task_six.id)
+Dependency.create(task_id: task_eight.id, dependency_id: task_one.id)
+Dependency.create(task_id: task_eight.id, dependency_id: task_nine.id)
 
 # [
 #   {

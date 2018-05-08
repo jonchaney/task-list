@@ -1,5 +1,3 @@
-// instead of storing the data in a backend and making an api to fetch it
-// i've stored and exported the sample data from this file.
 export const tasks = [
     {
       id: 1,

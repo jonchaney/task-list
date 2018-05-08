@@ -29995,8 +29995,6 @@ var fetchTasks = exports.fetchTasks = _taskActions2.default;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-// instead of storing the data in a backend and making an api to fetch it
-// i've stored and exported the sample data from this file.
 var tasks = exports.tasks = [{
   id: 1,
   group: "Purchases",

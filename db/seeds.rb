@@ -27,7 +27,6 @@ task_eight = Task.create(name: "Have a snack", group_id: build.id)
 
 # create dependencies
 Dependency.create(task_id: task_nine.id, dependency_id: task_one.id)
-Dependency.create(task_id: task_nine.id, dependency_id: task_one.id)
 Dependency.create(task_id: task_two.id, dependency_id: task_one.id)
 Dependency.create(task_id: task_three.id, dependency_id: task_one.id)
 Dependency.create(task_id: task_four.id, dependency_id: task_one.id)
@@ -35,12 +34,12 @@ Dependency.create(task_id: task_five.id, dependency_id: task_one.id)
 Dependency.create(task_id: task_six.id, dependency_id: task_two.id)
 Dependency.create(task_id: task_six.id, dependency_id: task_three.id)
 Dependency.create(task_id: task_six.id, dependency_id: task_four.id)
-Dependency.create(task_id: task_six.id, dependency_id: task_four.id)
 Dependency.create(task_id: task_seven.id, dependency_id: task_five.id)
 Dependency.create(task_id: task_seven.id, dependency_id: task_six.id)
 Dependency.create(task_id: task_eight.id, dependency_id: task_one.id)
 Dependency.create(task_id: task_eight.id, dependency_id: task_nine.id)
 
+# sample payload 
 # [
 #   {
 #     id: 1,

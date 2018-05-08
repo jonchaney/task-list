@@ -1,12 +1,13 @@
-class Api::TaskController < ApplicationController
+class Api::TasksController < ApplicationController
     def show
         @task = Task.find(params[:id])
+        render json: @task
     end
     
       def create
         @task = Task.new(task_params)
         if @task.save
-          render 'api/tasks/show'
+          render json: @task
         else
           render json: @task.errors.full_messages, status: 422
         end
@@ -20,7 +21,7 @@ class Api::TaskController < ApplicationController
       def update
         @task = Task.find(params[:id])
         if @task.update_attributes(task_params)
-          render :show
+          render json: @task
         else
           render json: @task.errors.full_messages, status: 422
         end
@@ -40,6 +41,6 @@ class Api::TaskController < ApplicationController
       private
     
       def task_params
-        params.require(:task).permit(:name, :completed_at)
+        params.permit(:name, :completed_at)
       end
 end

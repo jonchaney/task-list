@@ -6,6 +6,7 @@ class Api::TasksController < ApplicationController
     
       def create
         @task = Task.new(task_params)
+        p @task
         if @task.save
           render json: @task
         else
@@ -15,6 +16,7 @@ class Api::TasksController < ApplicationController
     
       def index
         @tasks = Task.all
+        # send to app/views/api/tasks/index.json.jbuilder to render requested payload slice
         render :index
       end
     
@@ -23,17 +25,18 @@ class Api::TasksController < ApplicationController
         if @task.update_attributes(task_params)
           render json: @task
         else
+          flash.now[:errors] = @link.errors.full_messages
           render json: @task.errors.full_messages, status: 422
         end
       end
     
       def destroy
         @task = Task.find(params[:id])
-    
         if @task
           @task.destroy
           render json: ['success']
         else
+          flash.now[:errors] = @link.errors.full_messages
           render json: ['error'], status: 404
         end
       end

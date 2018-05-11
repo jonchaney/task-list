@@ -263,6 +263,7 @@ DEPENDENCIES
   capybara (~> 2.15)
   chromedriver-helper
   coffee-rails (~> 4.2)
+  factory_bot
   factory_bot_rails
   faker
   guard-rspec

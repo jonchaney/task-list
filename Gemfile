@@ -44,6 +44,7 @@ group :development, :test do
   gem 'factory_bot_rails'
   gem 'spring'
   gem 'rails-controller-testing'
+  gem 'factory_bot'
 end
 
 group :development do

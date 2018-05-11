@@ -23,20 +23,28 @@ RSpec.describe Api::GroupsController, type: :controller do
     end
 
     describe 'POST #create' do
-
         it 'creates and renders the group as json' do
             post :create, params: {group: { name: 'Purchases' } }
             expect(response.content_type).to eq("application/json")
             expect(response).to have_http_status(200)
             expect(JSON.parse(response.body)['name']).to eq('Purchases')
         end
+
+        it 'validates name exists' do
+            post :create, params: {group: { name: nil } }
+            expect(response.content_type).to eq("application/json")
+            expect(flash[:errors]).to eq(["Name can't be blank"])
+            expect(response).to have_http_status(422)
+        end
+
     end
 
     describe 'GET #index' do 
-    it 'renders group index as json' do 
-        get :index, format: :json
-        expect(response.content_type).to eq("application/json")
-        expect(response).to have_http_status(200)
+        it 'renders group index as json' do 
+            get :index, format: :json
+            expect(response.content_type).to eq("application/json")
+            expect(response).to have_http_status(200)
+        end 
     end 
 
     describe 'POST #update' do
@@ -55,5 +63,4 @@ RSpec.describe Api::GroupsController, type: :controller do
             expect(response).to have_http_status(200)
         end
     end
-    end 
 end

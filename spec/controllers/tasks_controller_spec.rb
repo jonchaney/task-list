@@ -37,14 +37,21 @@ RSpec.describe Api::TasksController, type: :controller do
         end
     end
 
-    describe 'GET #index' do 
-        it 'renders task index as json' do 
-            
-        end 
+    # describe 'GET #index' do 
+    #     it 'renders task index as json' do 
+    #         get :index
+    #         expect(response).to render_template("index")
+    #         expect(response).to have_http_status(200)
+    #     end 
+    # end 
 
-    end 
-
-
-    
+    # describe 'POST #update' do
+    #     it 'updates a task' do
+    #         put :update, params: {task: { name: 'Go to the Bank!', id: task.id} }
+    #         expect(response.content_type).to eq("application/json")
+    #         expect(response).to have_http_status(200)
+    #         expect(JSON.parse(response.body)['name']).to eq('Go to the Bank!')
+    #     end
+    # end
 end
 

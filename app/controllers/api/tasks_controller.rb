@@ -4,7 +4,7 @@ class Api::TasksController < ApplicationController
         if @task
           render json: @task
         else 
-          render json: { errors: "Task not found" }, status: 404
+          render json: ["Task not found"], status: 404
         end
     end
     
@@ -48,6 +48,6 @@ class Api::TasksController < ApplicationController
     private
   
     def task_params
-      params.require(:task).permit(:name, :completed_at, :group_id)
+      params.require(:task).permit(:name, :completed_at, :group_id, :id)
     end
 end

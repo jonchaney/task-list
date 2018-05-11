@@ -7,26 +7,32 @@ RSpec.describe Api::TasksController, type: :controller do
 
     let(:group) { Group.create!(name: 'Errands') }
     let(:task) { Task.create!(name: 'Go to the Bank', completed_at: nil, group_id: group.id) }
-
+    let (:today) { Date.today }
     describe 'GET #show' do
         it 'renders the task as json' do
             get :show, params: { id: task.id }
             expect(response.content_type).to eq("application/json")
+            expect(JSON.parse(response.body)['name']).to eq('Go to the Bank')
+            expect(JSON.parse(response.body)['group_id']).to eq(group.id)
             expect(response).to have_http_status(200)
         end
 
         it 'http status as 404 not found when task does not exist' do
             get :show, params: { id: 65 }
+            expect(JSON.parse(response.body)['errors']).to eq("Task not found")
             expect(response).to have_http_status(404)
         end
     end
 
     describe 'POST #create' do
+
         it 'renders the task as json' do
-            post :create, params: {task: { name: 'Go to the Bank', completed_at: nil, group_id: group.id  } }
+            post :create, params: {task: { name: 'Go to the Bank', completed_at: today, group_id: group.id  } }
             expect(response.content_type).to eq("application/json")
             expect(response).to have_http_status(200)
             expect(JSON.parse(response.body)['name']).to eq('Go to the Bank')
+            date = JSON.parse(response.body)['completed_at']
+            expect(Date.parse(date)).to eq(today)
         end
 
         it 'validates group_id exists' do

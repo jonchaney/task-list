@@ -4,7 +4,7 @@ class Api::TasksController < ApplicationController
         if @task
           render json: @task
         else 
-          render json: ["Task not found"], status: 404
+          render json: { errors: "Task not found" }, status: 404
         end
     end
     

@@ -31,4 +31,29 @@ RSpec.describe Api::GroupsController, type: :controller do
             expect(JSON.parse(response.body)['name']).to eq('Purchases')
         end
     end
+
+    describe 'GET #index' do 
+    it 'renders group index as json' do 
+        get :index, format: :json
+        expect(response.content_type).to eq("application/json")
+        expect(response).to have_http_status(200)
+    end 
+
+    describe 'POST #update' do
+        it 'updates a group' do
+            patch :update, params: {id: group.id, group: { name: 'Funding'} }
+            expect(response.content_type).to eq("application/json")
+            expect(response).to have_http_status(200)
+            expect(JSON.parse(response.body)['name']).to eq('Funding')
+        end
+    end
+
+    describe 'POST #destroy' do
+        it 'destroys a group' do
+            delete :destroy, params: { id: group.id }
+            expect(response.content_type).to eq("application/json")
+            expect(response).to have_http_status(200)
+        end
+    end
+    end 
 end

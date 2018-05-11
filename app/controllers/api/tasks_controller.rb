@@ -20,7 +20,7 @@ class Api::TasksController < ApplicationController
   
     def index
       @tasks = Task.all
-      # send to app/views/api/tasks/index.json.jbuilder to render requested payload slice
+      # send to index.json.jbuilder to render requested payload slice
       render :index
     end
   

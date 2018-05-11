@@ -1,17 +1,22 @@
 class Api::GroupsController < ApplicationController
     def show
-        @group = Group.find(params[:id])
+      @group = Group.find_by(id: params[:id])
+      if @group
         render json: @group
+      else 
+        render json: { errors: "Group not found" }, status: 404
+      end
     end
     
-      def create
-        @group = Group.new(group_params)
-        if @group.save
-          render json: @groups
-        else
-          render json: @group.errors.full_messages, status: 422
-        end
+    def create
+      @group = Group.new(group_params)
+      if @group.save
+        render json: @group
+      else
+        flash.now[:errors] = @group.errors.full_messages
+        render json: @group.errors.full_messages, status: 422
       end
+    end
     
       def index
         @groups = Group.all
@@ -41,6 +46,6 @@ class Api::GroupsController < ApplicationController
       private
     
       def group_params
-        params.permit(:name, :completed_at)
+        params.require(:group).permit(:name, :id)
       end
 end

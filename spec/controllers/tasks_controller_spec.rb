@@ -59,5 +59,13 @@ RSpec.describe Api::TasksController, type: :controller do
     #         expect(JSON.parse(response.body)['name']).to eq('Go to the Bank!')
     #     end
     # end
+
+    describe 'POST #destroy' do
+        it 'destroys a task' do
+            delete 'tasks#destroy', params: {id: task.id}
+            expect(response.content_type).to eq("application/json")
+            expect(response).to have_http_status(200)
+        end
+    end
 end
 

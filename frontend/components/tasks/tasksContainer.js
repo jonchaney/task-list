@@ -3,7 +3,7 @@ import { fetchTasks } from '../../actions/taskActions';
 import Tasks from './tasks.jsx';
 
 const mapStateToProps = ( state ) => ({
-  tasks: fetchTasks
+  fetchTasks: () => dispatch(fetchTasks())
 });
 
 const mapDispatchToProps = dispatch => ({

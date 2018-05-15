@@ -5,10 +5,14 @@ class DefaultComponent extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    // this.props.fetchTasks();
+  }
+
   render() {
     return (
       <section>
-        // first component
+        
       </section>
     );
   }
